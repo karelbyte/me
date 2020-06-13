@@ -119,7 +119,9 @@
                                                 <td width="600" valign="top" align="center" style="padding:0;Margin:0;">
                                                     <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
                                                         <tr style="border-collapse:collapse;">
-                                                            <td style="padding:0;Margin:0;font-size:0;" align="center"><a target="_blank" href="https://viewstripo.email" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;font-size:14px;text-decoration:underline;color:#2980D9;"><img class="adapt-img" src="https://inooet.stripocdn.email/content/guids/CABINET_b748f68723c08ea6110c059c05f4df42/images/75141566983582522.png" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" width="600"></a></td>
+                                                            <td style="padding:0;Margin:0;font-size:0;" align="center"><a target="_blank" href="http://me.elpuertodigital.com" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;font-size:14px;text-decoration:underline;color:#2980D9;">
+                                                                    <img class="adapt-img" src="https://i.imgur.com/C4U46iP.png" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" width="600"></a>
+                                                            </td>
                                                         </tr>
                                                     </table></td>
                                             </tr>
