@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ContactEmail extends Mailable
+class ContactEmailToMe extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -16,12 +16,9 @@ class ContactEmail extends Mailable
      *
      * @return void
      */
-
-    public $data;
-
-    public function __construct($dat)
+    public function __construct()
     {
-        $this->data = $dat;
+        //
     }
 
     /**
@@ -31,6 +28,6 @@ class ContactEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('email', compact($this->data))->subject( 'Contacto me.elpuertodigital.com');
+        return $this->view('view.name');
     }
 }

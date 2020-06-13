@@ -19,7 +19,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/mail', function () {
+    $data = [
+        'name' => 'karel',
+        'msj' => 'Golly gosh, never raid a pirate.'
+    ];
+    return view('email', compact('data'));
+});
+
 Route::post('/send_me_mail', function (Request $request) {
+  Mail::to('karelpuerto78@gmail.com')->send(new \App\Mail\ContactEmail($request->all()));
   Mail::to($request->email)->send(new \App\Mail\ContactEmail($request->all()));
   return redirect()->back();
 })->name('sendmail');
