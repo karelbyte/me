@@ -8,6 +8,7 @@
     <meta name="description" content="Mat - Resume & vCard HTML Template">
     <meta name="keywords" content="personal, vcard, portfolio">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon
     ================================================== -->
     <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />

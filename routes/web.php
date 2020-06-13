@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/send_me_mail', function (Request $request) {
+  Mail::to($request->email)->send(new \App\Mail\ContactEmail($request->all()));
+  return redirect()->back();
+})->name('sendmail');
+

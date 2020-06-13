@@ -3,16 +3,17 @@
         <!-- Contact Form -->
         <section class="contact-form col-md-6 padding_30 padbot_45">
             <div class="section-title top_15 bottom_30"><span></span><h2>Contactame!</h2></div>
-            <form class="site-form">
+            <form class="site-form" method="post" action="{{route('sendmail')}}">
+                @csrf
                 <div class="row">
                     <div class="col-md-6">
-                        <input class="site-input" placeholder="Nombre">
+                        <input class="site-input" placeholder="Nombre" name="name">
                     </div>
                     <div class="col-md-6">
-                        <input class="site-input" placeholder="E-mail">
+                        <input class="site-input" placeholder="E-mail" name="email">
                     </div>
                     <div class="col-md-12">
-                        <textarea class="site-area" placeholder="Mensaje"></textarea>
+                        <textarea class="site-area" placeholder="Mensaje" name="msj"></textarea>
                     </div>
                     <div class="col-md-12 top_15 bottom_30">
                         <button class="site-btn" type="submit">Enviar</button>
