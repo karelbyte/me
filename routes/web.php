@@ -28,7 +28,7 @@ Route::get('/mail', function () {
 });
 
 Route::post('/send_me_mail', function (Request $request) {
-  Mail::to('karelpuerto78@gmail.com')->send(new \App\Mail\ContactEmail($request->all()));
+  Mail::to('karelpuerto78@gmail.com')->send(new \App\Mail\ContactEmailToMe($request->all()));
   Mail::to($request->email)->send(new \App\Mail\ContactEmail($request->all()));
   return redirect()->back();
 })->name('sendmail');

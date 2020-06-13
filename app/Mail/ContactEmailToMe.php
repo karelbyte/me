@@ -16,9 +16,12 @@ class ContactEmailToMe extends Mailable
      *
      * @return void
      */
-    public function __construct()
+
+    public $data;
+
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -28,6 +31,7 @@ class ContactEmailToMe extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        $data = $this->data;
+        return $this->view('email_to_me', compact('data'))->subject( 'Nuevo contacto de:' . $this->data['name']);
     }
 }

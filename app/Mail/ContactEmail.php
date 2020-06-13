@@ -31,6 +31,7 @@ class ContactEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('email', compact($this->data))->subject( 'Contacto me.elpuertodigital.com');
+        $data = $this->data;
+        return $this->view('email', compact('data'))->subject( 'Contacto me.elpuertodigital.com');
     }
 }
