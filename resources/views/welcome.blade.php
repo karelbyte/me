@@ -62,6 +62,20 @@
         </div>
         <div id="ajax-tab-container" class="col-lg-9 col-md-8 tab-container">
             <div class="row">
+                @if (\Session::has('msj'))
+                    <div class="alert alert-success">
+                        <ul>
+                            <li>{!! \Session::get('msj') !!}</li>
+                        </ul>
+                    </div>
+                @endif
+                    @if (\Session::has('error'))
+                        <div class="alert alert-success">
+                            <ul>
+                                <li>{!! \Session::get('error') !!}</li>
+                            </ul>
+                        </div>
+                    @endif
                 <header class="col-md-12">
                     <nav>
                         <div class="row">

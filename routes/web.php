@@ -28,8 +28,13 @@ Route::get('/mail', function () {
 });
 
 Route::post('/send_me_mail', function (Request $request) {
-  Mail::to('karelpuerto78@gmail.com')->send(new \App\Mail\ContactEmailToMe($request->all()));
-  Mail::to($request->email)->send(new \App\Mail\ContactEmail($request->all()));
-  return redirect()->back();
+  try {
+      Mail::to('karelpuerto78@gmail.com')->send(new \App\Mail\ContactEmailToMe($request->all()));
+      Mail::to($request->email)->send(new \App\Mail\ContactEmail($request->all()));
+      return redirect()->back()->with('msj', 'Su mensaje ha sido enviado');
+  } catch (\Exception $exception) {
+      return redirect()->back()->with('error', 'A ocurrido un error :(, intentelo en unos minutos!');
+  }
+
 })->name('sendmail');
 
