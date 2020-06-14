@@ -28,11 +28,7 @@
     ================================================== -->
     <link rel="stylesheet" href="{{asset('icon-fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}"/>
     <link rel="stylesheet" href="{{asset('icon-fonts/web-design/flaticon.css')}}" />
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-</head>
+    </head>
 <body>
 <!-- Wrapper -->
 <div class="wrapper top_60 container">
