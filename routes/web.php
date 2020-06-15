@@ -27,10 +27,12 @@ Route::post('/send_me_mail', function (Request $request) {
       if($score > 0.7) {
           Mail::to('karelpuerto78@gmail.com')->send(new \App\Mail\ContactEmailToMe($request->all()));
           Mail::to($request->email)->send(new \App\Mail\ContactEmail($request->all()));
-          return redirect('/#contact')->with('msj', 'Su mensaje ha sido enviado!');
+          return response()->json('Su mensaje ha sido enviado!', 200);
+          //return redirect('/#contact')->with('msj', 'Su mensaje ha sido enviado!');
       }
   } catch (\Exception $exception) {
-      return redirect('/#contact')->with('error', 'A ocurrido un error :(, intentelo en unos minutos!');
+      //return redirect('/#contact')->with('error', 'A ocurrido un error :(, intentelo en unos minutos!');
+      return response()->json('A ocurrido un error, intentelo en unos minutos!');
   }
 
 })->name('sendmail');

@@ -3,7 +3,7 @@
         <!-- Contact Form -->
         <section class="contact-form col-md-6 padding_30 padbot_45">
             <div class="section-title top_15 bottom_30"><span></span><h2>Contactame!</h2></div>
-            <form class="site-form" method="post" action="{{route('sendmail')}}">
+            <form class="site-form" id="send_contact">
                 {!! RecaptchaV3::field('register') !!}
                 @csrf
                 <div class="row">
@@ -17,7 +17,7 @@
                         <textarea class="site-area" placeholder="Mensaje" name="msj"></textarea>
                     </div>
                     <div class="col-md-12 top_15 bottom_30">
-                        <button class="site-btn icon hidden-xs" type="submit" id="send">Enviar <i id="send_ico" class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                        <button class="site-btn icon hidden-xs" id="send">Enviar <i id="send_ico" class="fa fa-paper-plane" aria-hidden="true"></i></button>
                     </div>
                 </div>
             </form>

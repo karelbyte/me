@@ -29,6 +29,8 @@
     <link rel="stylesheet" href="{{asset('icon-fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}"/>
     <link rel="stylesheet" href="{{asset('icon-fonts/web-design/flaticon.css')}}" />
     {!! RecaptchaV3::initJs() !!}
+    <style>
+    </style>
     </head>
 <body>
 <!-- Wrapper -->
@@ -59,7 +61,6 @@
         </div>
         <div id="ajax-tab-container" class="col-lg-9 col-md-8 tab-container">
             <div class="row">
-
                 <header class="col-md-12">
                     <nav>
                         <div class="row">
@@ -91,17 +92,11 @@
                 <!-- Page Content
                 ================================================== -->
                 <div class="col-md-12">
+                    <div id="response_back" class="alert alert-dismissible" style="display: none" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <b></b>
+                    </div>
                     <div id="content" class="panel-container">
-                        @if (\Session::has('msj'))
-                            <div class="alert alert-success" id="success">
-                                {!! \Session::get('msj') !!}
-                            </div>
-                        @endif
-                        @if (\Session::has('error'))
-                            <div class="alert alert-danger" id="danger">
-                                {!! \Session::get('error') !!}
-                            </div>
-                        @endif
                         <!-- Home Page -->
                         @component('components.home')@endcomponent
                         <!-- Resume Page  -->
@@ -135,12 +130,30 @@
 <script>
     $("document").ready(function(){
         setTimeout(function(){
-            $("#success").remove();
-            $("#danger").remove();
-        }, 4000 );
+            $("#response_back").hide();
+        }, 4000);
 
-        $('#send').click(function () {
-           $('#send_ico').removeClass('fa-paper-plane').addClass('fa-spinner fa-spin fa-fw');
+        $('#send').click(function (event) {
+            event.preventDefault();
+            $('#send_ico').removeClass('fa-paper-plane').addClass('fa-spinner fa-spin fa-fw');
+            $.ajax({
+                type: "POST",
+                url: '/send_me_mail',
+                data: $("#send_contact").serialize(),
+                success: function(data)
+                {
+                    $("#response_back b").html(data)
+                    $('#response_back').addClass('alert-success');
+                    $("#response_back").show();
+                    $('#send_ico').removeClass('fa-spinner fa-spin fa-fw').addClass('fa-paper-plane');
+                },
+                error: function (data) {
+                    $("#response_back b").html(data)
+                    $('#response_back').addClass('alert-warning');
+                    $("#response_back").show();
+                    $('#send_ico').removeClass('fa-spinner fa-spin fa-fw').addClass('fa-paper-plane');
+                }
+            });
         })
     });
 </script>
