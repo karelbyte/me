@@ -28,6 +28,7 @@
     ================================================== -->
     <link rel="stylesheet" href="{{asset('icon-fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}"/>
     <link rel="stylesheet" href="{{asset('icon-fonts/web-design/flaticon.css')}}" />
+    {!! RecaptchaV3::initJs() !!}
     </head>
 <body>
 <!-- Wrapper -->
@@ -58,20 +59,7 @@
         </div>
         <div id="ajax-tab-container" class="col-lg-9 col-md-8 tab-container">
             <div class="row">
-                @if (\Session::has('msj'))
-                    <div class="alert alert-success">
-                        <ul>
-                            <li>{!! \Session::get('msj') !!}</li>
-                        </ul>
-                    </div>
-                @endif
-                    @if (\Session::has('error'))
-                        <div class="alert alert-success">
-                            <ul>
-                                <li>{!! \Session::get('error') !!}</li>
-                            </ul>
-                        </div>
-                    @endif
+
                 <header class="col-md-12">
                     <nav>
                         <div class="row">
@@ -88,7 +76,7 @@
                                 </ul>
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-8 dynamic">
-                                <button class="pull-right site-btn icon hidden-xs" id="hireme" >Contratame <i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                <button class="pull-right site-btn icon hidden-xs" id="hireme" >Contratame <i class="fa fa-handshake-o" aria-hidden="true"></i></button>
                                 <div class="hamburger pull-right hidden-lg hidden-md"><i class="fa fa-bars" aria-hidden="true"></i></div>
                                 <div class="hidden-md social-icons pull-right">
                                     <a class="fb" href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -104,6 +92,16 @@
                 ================================================== -->
                 <div class="col-md-12">
                     <div id="content" class="panel-container">
+                        @if (\Session::has('msj'))
+                            <div class="alert alert-success" id="success">
+                                {!! \Session::get('msj') !!}
+                            </div>
+                        @endif
+                        @if (\Session::has('error'))
+                            <div class="alert alert-danger" id="danger">
+                                {!! \Session::get('error') !!}
+                            </div>
+                        @endif
                         <!-- Home Page -->
                         @component('components.home')@endcomponent
                         <!-- Resume Page  -->
@@ -134,5 +132,17 @@
 <script src="{{asset('js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('js/main.js')}}"></script>
 <script src="{{asset('js/jquery.cookie-1.4.1.min.js')}}"></script>
+<script>
+    $("document").ready(function(){
+        setTimeout(function(){
+            $("#success").remove();
+            $("#danger").remove();
+        }, 4000 );
+
+        $('#send').click(function () {
+           $('#send_ico').removeClass('fa-paper-plane').addClass('fa-spinner fa-spin fa-fw');
+        })
+    });
+</script>
 </body>
 </html>
