@@ -132,7 +132,6 @@
         setTimeout(function(){
             $("#response_back").hide();
         }, 4000);
-
         $('#send').click(function (event) {
             event.preventDefault();
             $('#send_ico').removeClass('fa-paper-plane').addClass('fa-spinner fa-spin fa-fw');
@@ -148,8 +147,10 @@
                     $('#send_ico').removeClass('fa-spinner fa-spin fa-fw').addClass('fa-paper-plane');
                 },
                 error: function (data) {
-                    $("#response_back b").html(data)
-                    $('#response_back').addClass('alert-warning');
+                    let txt = data.responseText.replace('"', '')
+                    const result = txt.replace('"', '')
+                    $("#response_back b").html(result)
+                    $('#response_back').addClass('alert-danger');
                     $("#response_back").show();
                     $('#send_ico').removeClass('fa-spinner fa-spin fa-fw').addClass('fa-paper-plane');
                 }

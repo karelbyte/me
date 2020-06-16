@@ -32,7 +32,7 @@ Route::post('/send_me_mail', function (Request $request) {
       }
   } catch (\Exception $exception) {
       //return redirect('/#contact')->with('error', 'A ocurrido un error :(, intentelo en unos minutos!');
-      return response()->json('A ocurrido un error, intentelo en unos minutos!');
+      return response()->json('A ocurrido un error, intentelo en unos minutos!', 402);
   }
 
 })->name('sendmail');
