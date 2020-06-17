@@ -13,7 +13,7 @@ class MailResquest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,21 @@ class MailResquest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required',
+            'email' => 'required|email:rfc,dns',
+            'msj' => 'required|min:10|max:350'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Su nombre es requerido!',
+            'email.required'  => 'Una dirección de correo es requerida!',
+            'email.email'  => 'Correo no válido!',
+            'msj.required' => 'Mensaje requerido!',
+            'msj.min' => 'Mensaje mínimo de 10 caracteres!.',
+            'msj.max' => 'Mensaje máximo de 350 caracteres!.'
         ];
     }
 }

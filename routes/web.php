@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Lunaweb\RecaptchaV3\Facades\RecaptchaV3;
+use App\Http\Requests\MailResquest;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +21,7 @@ Route::get('/', function () {
 });
 
 
-Route::post('/send_me_mail', function (Request $request) {
+Route::post('/send_me_mail', function (MailResquest $request) {
   try {
       $score = RecaptchaV3::verify($request->get('g-recaptcha-response'), 'register');
       if($score > 0.7) {

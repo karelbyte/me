@@ -94,7 +94,8 @@
                 <div class="col-md-12">
                     <div id="response_back" class="alert alert-dismissible" style="display: none" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <b></b>
+                        <ul id="ul_error" style="margin-left: 10px">
+                        </ul>
                     </div>
                     <div id="content" class="panel-container">
                         <!-- Home Page -->
@@ -129,9 +130,7 @@
 <script src="{{asset('js/jquery.cookie-1.4.1.min.js')}}"></script>
 <script>
     $("document").ready(function(){
-        setTimeout(function(){
-            $("#response_back").hide();
-        }, 4000);
+
         $('#send').click(function (event) {
             event.preventDefault();
             $('#send_ico').removeClass('fa-paper-plane').addClass('fa-spinner fa-spin fa-fw');
@@ -141,18 +140,44 @@
                 data: $("#send_contact").serialize(),
                 success: function(data)
                 {
-                    $("#response_back b").html(data)
+                    $('#ul_error li').remove();
+                    $("#ul_error").append('<i>' + data + '</i>');
                     $('#response_back').addClass('alert-success');
                     $("#response_back").show();
                     $('#send_ico').removeClass('fa-spinner fa-spin fa-fw').addClass('fa-paper-plane');
+                    setTimeout(function(){
+                        $("#response_back").hide();
+                    }, 4000);
                 },
                 error: function (data) {
-                    let txt = data.responseText.replace('"', '')
-                    const result = txt.replace('"', '')
-                    $("#response_back b").html(result)
-                    $('#response_back').addClass('alert-danger');
-                    $("#response_back").show();
-                    $('#send_ico').removeClass('fa-spinner fa-spin fa-fw').addClass('fa-paper-plane');
+                    if (data.status === 402) {
+                         let txt = data.responseText.replace('"', '')
+                         const result = txt.replace('"', '')
+                         $('#ul_error li').remove();
+                         $("#ul_error").append('<i>' + result + '</i>');
+                         $('#response_back').addClass('alert-danger');
+                         $("#response_back").show()
+                        $('#send_ico').removeClass('fa-spinner fa-spin fa-fw').addClass('fa-paper-plane');
+                        setTimeout(function(){
+                            $("#response_back").hide();
+                        }, 4000);
+                    } else {
+                        let items = [];
+                        const response = data.responseJSON.errors;
+                        $('#ul_error li').remove();
+                        for(let item in response) {
+                            response[item].forEach(it => {
+                                items.push('<li id="" >' + it + '</li>');
+                            })
+                        }
+                        $('#response_back').addClass('alert-danger');
+                        $("#ul_error").append(items);
+                        $("#response_back").show()
+                        $('#send_ico').removeClass('fa-spinner fa-spin fa-fw').addClass('fa-paper-plane');
+                        setTimeout(function(){
+                            $("#response_back").hide();
+                        }, 4000);
+                    }
                 }
             });
         })
