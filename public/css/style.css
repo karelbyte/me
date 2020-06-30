@@ -30,6 +30,7 @@
 
 /*------------------------ 1 Body and Core Css ------------------------*/
 
+.grecaptcha-badge { visibility: hidden; }
 
 .portfolio img.item{
     width: 100%;
